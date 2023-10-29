@@ -5,7 +5,7 @@ import { Color } from '../constants'
 // Auth Stack
 import { SignIn, SignUp } from '../screens/AuthStack';
 // Main Stack
-import { Home } from '../screens/MainStack'; 
+import { Home, ChatScreen, ContactList } from '../screens/MainStack'; 
 import { useSelector, useDispatch } from 'react-redux'
 import { supabase } from '../lib/supabase';
 import { userSession } from '../redux/slices/AuthSlice';
@@ -35,6 +35,8 @@ const MainScreen = () => {
    return (
         <Stack.Navigator screenOptions={{ gestureEnabled: false }}>
             <Stack.Screen name="home" component={Home} options={{ headerShown: true, title: "" }} />
+            <Stack.Screen name="contact" component={ContactList} options={{ headerShown: true, title: "" }} />
+            <Stack.Screen name="chat" component={ChatScreen} options={{ headerShown: true, title: "" }} />
         </Stack.Navigator>
    )
 }

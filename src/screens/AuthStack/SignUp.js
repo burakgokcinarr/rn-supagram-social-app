@@ -11,6 +11,7 @@ export default function SignUp() {
   const navigation              = useNavigation();
   const [mail, setMail]         = useState(null);
   const [password, setPassword] = useState(null);
+  const [username, setUsername] = useState(null);
   const [loading, setLoading]   = useState(false);
 
   useEffect(() => {
@@ -23,7 +24,7 @@ export default function SignUp() {
   }, [])
 
   const createAccount = async() => {
-    if (mail && password) {
+    if (mail && password && username) {
       setLoading(true)
     
       const { data, error } = await supabase.auth.signUp({
@@ -34,8 +35,20 @@ export default function SignUp() {
       if (error) alert(error.message);
   
       if (data.session) {
-        //console.log(data)
-        alert("Your registration was successful. Please log in.")
+        // Insert Profile Table Info
+        const { data, error } = await supabase.from('profile').insert({
+          user_name: username,
+          profile_uri: 'https://randomuser.me/api/portraits/men/75.jpg'
+        }).select('*')
+    
+        if (error) alert(error.message);
+    
+        if (data) {
+          setMail(null);
+          setPassword(null);
+          setUsername(null);
+          alert("Your registration was successful. Please log in.")
+        }
       }
   
       setLoading(false)
@@ -55,6 +68,14 @@ export default function SignUp() {
   return (
     <KeyboardAvoidingView style={styles.container} behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
       <Text style={styles.title}>Supagram</Text>
+      <TextInput
+        placeholder='Username'
+        placeholderTextColor={Color.DARK_COLOR}
+        onChangeText={setUsername}
+        value={username}
+        style={styles.input}
+        textContentType="oneTimeCode"
+      />
       <TextInput
         placeholder='E-Mail'
         placeholderTextColor={Color.DARK_COLOR}

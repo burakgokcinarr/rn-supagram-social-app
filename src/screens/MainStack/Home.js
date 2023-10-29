@@ -8,7 +8,7 @@ import { logout } from '../../redux/slices/AuthSlice'
 import { Color, Font } from '../../constants'
 import { FlashList } from "@shopify/flash-list";
 import { PostCard } from '../../components';
-import { FontAwesome, AntDesign } from '@expo/vector-icons';
+import { FontAwesome, AntDesign, Ionicons } from '@expo/vector-icons';
 import * as ImagePicker from 'expo-image-picker';
 import { LinearGradient } from 'expo-linear-gradient';
 
@@ -28,14 +28,20 @@ export default function Home() {
         backgroundColor: Color.BG_COLOR
       },
       headerRight: () => (
-       <TouchableOpacity onPress={userLogout} style={{marginRight: 10}}>
+       <TouchableOpacity onPress={userLogout} style={{marginRight: 40}}>
         <AntDesign name="logout" size={25} color={Color.RED_COLOR} />
        </TouchableOpacity>
       ),
+      headerLeft: () => (
+        <TouchableOpacity  onPress={() => navigation.navigate('contact')}>
+         <Ionicons name="chatbubble-ellipses-sharp" size={25} color={Color.DARK_COLOR}/>
+        </TouchableOpacity>
+       ),
     })
   }, [])
 
   useEffect(() => {
+    navigation.navigate('contact')
     getAllPostData();
   }, [])
 
