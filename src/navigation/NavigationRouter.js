@@ -23,27 +23,27 @@ const theme = {
 }
 
 const AuthScreen = () => {
-   return (
+    return (
         <Stack.Navigator screenOptions={{ gestureEnabled: false }}>
             <Stack.Screen name="signin" component={SignIn} options={{ headerShown: false }} />
             <Stack.Screen name="signup" component={SignUp} options={{ headerShown: true, title: "" }} />
         </Stack.Navigator>
-   )
+    )
 }
 
 const MainScreen = () => {
-   return (
+    return (
         <Stack.Navigator screenOptions={{ gestureEnabled: false }}>
             <Stack.Screen name="home" component={Home} options={{ headerShown: true, title: "" }} />
             <Stack.Screen name="contact" component={ContactList} options={{ headerShown: true, title: "" }} />
             <Stack.Screen name="chat" component={ChatScreen} options={{ headerShown: true, title: "" }} />
         </Stack.Navigator>
-   )
+    )
 }
 
 export default function NavigationRouter() {
 
-    const isLogIn = useSelector((state) => state.auth.user);
+    const isLogIn               = useSelector((state) => state.auth.user);
     const dispatch              = useDispatch();
     const [loading, setLoading] = useState(true);
 

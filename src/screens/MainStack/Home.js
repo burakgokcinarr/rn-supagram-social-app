@@ -28,20 +28,15 @@ export default function Home() {
         backgroundColor: Color.BG_COLOR
       },
       headerRight: () => (
-       <TouchableOpacity onPress={userLogout} style={{marginRight: 40}}>
-        <AntDesign name="logout" size={25} color={Color.RED_COLOR} />
-       </TouchableOpacity>
+        <AntDesign name="logout" size={25} color={Color.RED_COLOR} onPress={userLogout}/>
       ),
       headerLeft: () => (
-        <TouchableOpacity  onPress={() => navigation.navigate('contact')}>
-         <Ionicons name="chatbubble-ellipses-sharp" size={25} color={Color.DARK_COLOR}/>
-        </TouchableOpacity>
-       ),
-    })
+        <Ionicons name="chatbubble-ellipses-sharp" size={25} color={Color.DARK_COLOR} onPress={() => navigation.navigate('contact')}/>
+      ),
+    }) 
   }, [])
 
   useEffect(() => {
-    navigation.navigate('contact')
     getAllPostData();
   }, [])
 
@@ -106,7 +101,7 @@ export default function Home() {
       mediaTypes: ImagePicker.MediaTypeOptions.All,
       allowsEditing: true,
       aspect: [4, 3],
-      quality: 1,
+      quality: 0.3,
       base64: true
     });
 
