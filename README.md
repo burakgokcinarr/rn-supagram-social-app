@@ -1,4 +1,4 @@
-# React Native Transport App
+# React Native Social App with Supabase
 Making a basic hidden social media application with Supabase. (The aim is to understand the use of Supabase with React Native)
 
 [![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://choosealicense.com/licenses/mit/)
